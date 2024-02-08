@@ -24,10 +24,8 @@ public class DiscordStartupService : IHostedService
 
     public async Task StartAsync(CancellationToken cancellationToken)
     {
-        _logger.LogInformation("start discord");
         await _discord.LoginAsync(TokenType.Bot, Environment.GetEnvironmentVariable("DISCORD_BOT_TOKEN"));
         await _discord.StartAsync();
-        _logger.LogInformation("discord up");
     }
 
     public async Task StopAsync(CancellationToken cancellationToken)

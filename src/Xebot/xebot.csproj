@@ -23,6 +23,12 @@
     <None Update=".env.local">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <!-- <None Update="profile_sessions.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="profile.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None> -->
 
     <None Remove="Properties\launchSettings.json" />
   </ItemGroup>

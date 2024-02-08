@@ -11,6 +11,7 @@ using Discord;
 using Xebot.BackgroundService;
 using Discord.Interactions;
 using Xebot.Storage;
+using Xebot.Helper;
 
 CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
 CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
@@ -21,10 +22,13 @@ var host = Host.CreateDefaultBuilder(args)
     {
         services
             .AddSingleton<JsonConverter>()
-            .AddSingleton<InteractionService>()
             .AddSingleton<MemoryStorage>()
+            
+            .AddSingleton<InteractionService>()
             .AddSingleton(new DiscordSocketClient(new DiscordSocketConfig() { GatewayIntents = GatewayIntents.All }))
 
+            .AddTransient<ButtonHandler>()
+            
             .AddHostedService<InteractionHandlingService>()
             .AddHostedService<DiscordStartupService>();
     })

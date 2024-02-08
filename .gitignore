@@ -331,3 +331,6 @@ ASALocalRun/
 
 .env.local
 .idea
+
+profiles.json
+profile_sessions.json
