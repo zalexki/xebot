@@ -16,4 +16,4 @@ WORKDIR /App
 
 COPY --from=build-env /App//out .
 
-ENTRYPOINT ["dotnet", "xebot.dll"]
+ENTRYPOINT ["dotnet", "Xebot.dll"]
