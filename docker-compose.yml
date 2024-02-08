@@ -1,12 +1,10 @@
-version: '3'
+version: "3.9"
 
 services:
-  app:
-    build: docker/app
-    volumes:
-      - ./:/var/www/html
-    working_dir: /var/www/html
+  xebot:
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: src/Xebot/Dockerfile
     environment:
-      APP_APACHE_ROOT_DIR: /var/www/html
-    ports:
-      - 80:80
+      - ASPNETCORE_ENVIRONMENT=Production
