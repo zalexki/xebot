@@ -28,7 +28,8 @@ public class ButtonModule(MemoryStorage _memoryStorage, ILogger<ButtonModule> _l
             var currentProfile = _memoryStorage.GetProfile(Context.Interaction.User);
 
             embed
-                .WithTitle($"{Context.Interaction.User.GlobalName} a pris son service")
+                .AddField("▬▬▬▬▬▬▬▬▬▬▬▬ Prise De Service ▬▬▬▬▬▬▬▬▬▬▬▬", "╰┈➤")
+                .AddField($"** **", $"{Context.Interaction.User.Mention} a pris sa fin de service.")
 
                 // empty line
                 .AddField("** **", "** **")
@@ -75,7 +76,6 @@ public class ButtonModule(MemoryStorage _memoryStorage, ILogger<ButtonModule> _l
 
 
             embed
-                // .WithTitle($"{Context.Interaction.User.GlobalName} a pris sa fin de service.")
                 .AddField("▬▬▬▬▬▬▬▬▬▬▬▬ Fin De Service ▬▬▬▬▬▬▬▬▬▬▬▬", "╰┈➤")
                 .AddField($"** **", $"{Context.Interaction.User.Mention} a pris sa fin de service.")
 
