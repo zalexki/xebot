@@ -9,4 +9,4 @@ up:
 pu: prod-update
 prod-update:
 	git pull
-	docker compose -d --no-deps --build xebot
+	docker compose up -d --no-deps --build xebot
