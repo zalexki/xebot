@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  xebot:
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: src/Xebot/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production

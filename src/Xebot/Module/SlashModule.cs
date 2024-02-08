@@ -9,7 +9,7 @@ namespace Xebot.Modules;
 
 public class SlashModule(MemoryStorage _memoryStorage) : InteractionModuleBase<SocketInteractionContext>
 {
-    [SlashCommand("reset", "Reset all profiles and sessions.")]
+    [SlashCommand("reset", "Reset all profiles and sessions")]
     [Discord.Commands.RequireUserPermission(GuildPermission.Administrator)]
     public async Task ResetData()
     {
@@ -21,24 +21,24 @@ public class SlashModule(MemoryStorage _memoryStorage) : InteractionModuleBase<S
     }
 
     // show all datas
-    [SlashCommand("showall", "Show all data")]
+    [SlashCommand("showall", "Show all sessions data")]
     [Discord.Commands.RequireUserPermission(GuildPermission.Administrator)]
     public async Task ShowAllData()
     {
         var datas = $"{JsonConvert.SerializeObject(_memoryStorage.ProfileSessions, Formatting.Indented)}";
 
-        await RespondAsync($"{datas} All profiles and sessions have been reset.", ephemeral: true);
+        await RespondAsync($"{datas}", ephemeral: true);
     }
 
     // show data of a profile
-    [SlashCommand("show", "Show all data")]
+    [SlashCommand("show", "Show session data for one user")]
     [Discord.Commands.RequireUserPermission(GuildPermission.Administrator)]
     public async Task ShowUserData(SocketGuildUser user = null)
     {
         user ??= (SocketGuildUser)Context.User;
         var datas = $"{JsonConvert.SerializeObject(_memoryStorage.ProfileSessions.FindAll(x => x.ProfileId == user.Id), Formatting.Indented)}";
 
-        await RespondAsync($"{Context.User.Mention} All profiles and sessions have been reset.", ephemeral: true);
+        await RespondAsync($"{Context.User.Mention}", ephemeral: true);
         return;
     }
 }

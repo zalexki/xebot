@@ -26,8 +26,6 @@ var host = Host.CreateDefaultBuilder(args)
             
             .AddSingleton<InteractionService>()
             .AddSingleton(new DiscordSocketClient(new DiscordSocketConfig() { GatewayIntents = GatewayIntents.All }))
-
-            .AddTransient<ButtonHandler>()
             
             .AddHostedService<InteractionHandlingService>()
             .AddHostedService<DiscordStartupService>();
@@ -35,11 +33,11 @@ var host = Host.CreateDefaultBuilder(args)
     .UseSerilog((hostingContext, services, loggerConfiguration) => loggerConfiguration
         .Enrich.FromLogContext()
         .WriteTo.Console()
-        //.Enrich.WithNewRelicLogsInContext()
-        //.WriteTo.NewRelicLogs(
-        //    licenseKey: Environment.GetEnvironmentVariable("NEW_RELIC_KEY"),
-        //    endpointUrl: "https://log-api.eu.newrelic.com/log/v1",
-        //    applicationName: "Xebot")
+        .Enrich.WithNewRelicLogsInContext()
+        .WriteTo.NewRelicLogs(
+           licenseKey: Environment.GetEnvironmentVariable("NEW_RELIC_KEY"),
+           endpointUrl: "https://log-api.eu.newrelic.com/log/v1",
+           applicationName: "xebot")
     )
     .Build();
 

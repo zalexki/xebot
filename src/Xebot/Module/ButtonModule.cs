@@ -42,15 +42,8 @@ public class ButtonModule(MemoryStorage _memoryStorage, ILogger<ButtonModule> _l
                 .AddField("Bon service à toi !", "** **")
                 .WithColor(Color.Green);
 
-            if (_channelToSendEvents is null)
-            {
-                _logger.LogError("channel to send events is null");
-                await Context.Interaction.RespondAsync("ERROR: channel to send events is null");
-                return;
-            }
-
             await _memoryStorage.StartProfileSession(Context.Interaction.User.Id, utcNow);
-            await _channelToSendEvents.SendMessageAsync(
+            await _memoryStorage.channelToSendEvents.SendMessageAsync(
                 embed: embed.Build(), options: new RequestOptions() { Timeout = 25000, RetryMode = RetryMode.AlwaysRetry });
 
             await Context.Interaction.RespondAsync("Prise de service enregistré.", ephemeral: true);
@@ -60,7 +53,7 @@ public class ButtonModule(MemoryStorage _memoryStorage, ILogger<ButtonModule> _l
             _logger.LogError(e, "channel to send embed is null");
         }
     }
-    
+
     [ComponentInteraction("fds")]
     public async Task HandleFds()
     {
