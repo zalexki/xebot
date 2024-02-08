@@ -13,8 +13,8 @@ public class MemoryStorage
 {
     private const string _profilesPath = "profiles.json";
     private const string _profileSessionsPath = "profile_sessions.json";
-    public readonly ulong ID_channelToSendEmbed = ulong.Parse(Environment.GetEnvironmentVariable("CHANNEL_TO_SEND_EMBED"));
-    public readonly ulong ID_channelToSendEvents = ulong.Parse(Environment.GetEnvironmentVariable("CHANNEL_TO_SEND_EVENTS"));
+    public readonly ulong ID_channelToSendEmbed = ulong.Parse(Environment.GetEnvironmentVariable("CHANNEL_TO_SEND_EMBED") ?? "0");
+    public readonly ulong ID_channelToSendEvents = ulong.Parse(Environment.GetEnvironmentVariable("CHANNEL_TO_SEND_EVENTS") ?? "0");
     public ITextChannel channelToSendEvents;
     public readonly List<Profile> Profiles = [];
     public readonly List<ProfileSession> ProfileSessions = [];

@@ -78,9 +78,11 @@ public class InteractionHandlingService(
 
         var embed = new EmbedBuilder();
         embed
-            .WithTitle("bot de prise de service")
-            .AddField("clic clic", "putaclic")
-            .WithColor(Color.Blue);
+            .WithTitle("Pointeuse EMS Pillbox Hill")
+            .AddField("PDS", "Prise De Service")
+            .AddField("FDS", "Fin De Service")
+            .WithImageUrl("https://cdn.discordapp.com/attachments/1033184725973610517/1205247718864461844/hopital_pillbox.png?ex=65d7ad68&is=65c53868&hm=83264fecc7e56479be11d8933aec9a16023babc6e2c2bc9721a1e54dc8149032&")
+            .WithColor(Color.DarkRed);
 
         await chanText.SendMessageAsync(embed: embed.Build(), components: component.Build());
         return true;
