@@ -12,6 +12,6 @@ public static class DateConverter
     public static string ConvertUtcToParisTimeHumanReadable(DateTime utcDate)
     {
         TimeZoneInfo parisTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Romance Standard Time");
-        return TimeZoneInfo.ConvertTimeFromUtc(utcDate, parisTimeZone).ToString("MM/dd hh:mm:ss");
+        return TimeZoneInfo.ConvertTimeFromUtc(utcDate, parisTimeZone).ToString("dd/MM hh:mm:ss");
     }
 }
