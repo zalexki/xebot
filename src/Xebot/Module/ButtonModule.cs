@@ -78,10 +78,10 @@ public class ButtonModule(MemoryStorage _memoryStorage, ILogger<ButtonModule> _l
 
             embed
                 .AddField("▬▬▬▬▬▬▬▬▬▬▬▬ Fin De Service ▬▬▬▬▬▬▬▬▬▬▬▬", "╰┈➤")
-                .AddField($"** **", $"{Context.Interaction.User.Mention} a pris sa fin de service.")
+                .AddField($"** **", $"{Context.Interaction.User.Mention} a pris son service.")
 
                 // empty line
-                .AddField("**                                    **", "**                                   **")
+                .AddField("** **", "** **")
 
                 .AddField("Début de service :", DateConverter.ConvertUtcToParisTimeHumanReadable(currentSession.DateStart), true)
                 .AddField("Fin de service :", DateConverter.ConvertUtcToParisTimeHumanReadable(currentSession.DateEnd ?? utcNow), true)
