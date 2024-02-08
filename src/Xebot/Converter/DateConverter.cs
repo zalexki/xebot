@@ -6,7 +6,7 @@ public static class DateConverter
 {
     public static string ConvertSecondsToHumanHourReadable(ulong seconds)
     {
-        return TimeSpan.FromSeconds(seconds).ToString(@"HH\:mm\:ss");
+        return TimeSpan.FromSeconds(seconds).ToString(@"hh\:mm\:ss");
     }
 
     public static string ConvertUtcToParisTimeHumanReadable(DateTime utcDate)
