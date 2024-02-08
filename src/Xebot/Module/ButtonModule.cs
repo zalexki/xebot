@@ -41,7 +41,8 @@ public class ButtonModule(MemoryStorage _memoryStorage, ILogger<ButtonModule> _l
                 .AddField("** **", "** **")
 
                 .AddField("Bon service à toi !", "** **")
-                .WithColor(Color.Green);
+                .WithColor(Color.Green)
+                .WithCurrentTimestamp();
 
             await _memoryStorage.StartProfileSession(Context.Interaction.User.Id, utcNow);
             await _memoryStorage.channelToSendEvents.SendMessageAsync(
@@ -91,7 +92,8 @@ public class ButtonModule(MemoryStorage _memoryStorage, ILogger<ButtonModule> _l
                 // empty line
                 .AddField("** **", "** **")
                 .AddField("Bonne fin de service à toi !", "** **")
-                .WithColor(Color.Red);
+                .WithColor(Color.Red)
+                .WithCurrentTimestamp();
 
             if (_memoryStorage.channelToSendEvents is null)
             {
