@@ -11,7 +11,6 @@ using Discord;
 using Xebot.BackgroundService;
 using Discord.Interactions;
 using Xebot.Storage;
-using Xebot.Helper;
 
 CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
 CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
