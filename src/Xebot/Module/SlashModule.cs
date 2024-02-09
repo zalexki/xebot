@@ -45,7 +45,7 @@ public class SlashModule(MemoryStorage _memoryStorage, ILogger<SlashModule> _log
 
             var datas = string.Join(" \n ", matchedItems.Select(x => x.Name));
 
-            await RespondAsync($"{Context.User.Mention} {Context.User.GlobalName} {Context.User.Username} {Context.User.Username} All active sessions : \n {datas}", ephemeral: true);
+            await RespondAsync($"{Context.User.Mention} All active sessions : \n {datas}", ephemeral: true);
         }
         catch (Exception e)
         {
