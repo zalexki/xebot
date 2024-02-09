@@ -29,7 +29,7 @@ public class ButtonModule(MemoryStorage _memoryStorage, ILogger<ButtonModule> _l
 
             embed
                 .AddField("▬▬▬▬▬▬▬▬▬▬▬▬ Prise De Service ▬▬▬▬▬▬▬▬▬▬▬▬", "╰┈➤")
-                .AddField($"** **", $"{Context.Interaction.User.Mention} a pris sa fin de service.")
+                .AddField($"** **", $"{Context.Interaction.User.Mention} a commencé sa prise de service.")
 
                 // empty line
                 .AddField("** **", "** **")

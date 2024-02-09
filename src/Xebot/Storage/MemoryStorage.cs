@@ -50,7 +50,7 @@ public class MemoryStorage
             profile = new Profile
             {
                 Id = user.Id,
-                Name = user.GlobalName,
+                Name = user.Mention,
                 TotalSeconds = 0
             };
             Profiles.Add(profile);

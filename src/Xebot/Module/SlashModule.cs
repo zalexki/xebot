@@ -39,17 +39,17 @@ public class SlashModule(MemoryStorage _memoryStorage, ILogger<SlashModule> _log
         {
             var sessions = _memoryStorage.ProfileSessions.FindAll(x => x.DateEnd is null);
             var matchedItems = _memoryStorage.Profiles.Join(sessions, 
-                              item1 => item1.Id, 
-                              item2 => item2.ProfileId, 
-                              (item1, item2) => item1).AsEnumerable();
+                item1 => item1.Id, 
+                item2 => item2.ProfileId, 
+                (item1, item2) => item1).AsEnumerable();
 
-            var datas = string.Join(",", matchedItems.Select(x => x.Name));
+            var datas = string.Join(" \n ", matchedItems.Select(x => x.Name));
 
-            await RespondAsync($"All active sessions : \n {datas}", ephemeral: true);
+            await RespondAsync($"{Context.User.Mention} {Context.User.GlobalName} {Context.User.Username} {Context.User.Username} All active sessions : \n {datas}", ephemeral: true);
         }
         catch (Exception e)
         {
-            _logger.LogError(e, $"error processing showall");
+            _logger.LogError(e, $"error processing showactives");
         }
     }
 
