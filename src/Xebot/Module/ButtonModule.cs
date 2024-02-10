@@ -29,7 +29,7 @@ public class ButtonModule(MemoryStorage _memoryStorage, ILogger<ButtonModule> _l
 
             embed
                 .AddField("▬▬▬▬▬▬▬▬▬▬▬▬ Prise De Service ▬▬▬▬▬▬▬▬▬▬▬▬", "╰┈➤")
-                .AddField($"** **", $"{Context.Interaction.User.Mention} a commencé sa prise de service.")
+                .AddField($"** **", $"{Context.Interaction.User.Mention} a commencé son service.")
 
                 // empty line
                 .AddField("** **", "** **")
@@ -78,7 +78,7 @@ public class ButtonModule(MemoryStorage _memoryStorage, ILogger<ButtonModule> _l
 
             embed
                 .AddField("▬▬▬▬▬▬▬▬▬▬▬▬ Fin De Service ▬▬▬▬▬▬▬▬▬▬▬▬", "╰┈➤")
-                .AddField($"** **", $"{Context.Interaction.User.Mention} a pris son service.")
+                .AddField($"** **", $"{Context.Interaction.User.Mention} a finis son service.")
 
                 // empty line
                 .AddField("** **", "** **")

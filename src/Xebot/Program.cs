@@ -26,6 +26,7 @@ var host = Host.CreateDefaultBuilder(args)
             .AddSingleton<InteractionService>()
             .AddSingleton(new DiscordSocketClient(new DiscordSocketConfig() { GatewayIntents = GatewayIntents.All }))
             
+            .AddHostedService<AutoEndService>()
             .AddHostedService<InteractionHandlingService>()
             .AddHostedService<DiscordStartupService>();
     })

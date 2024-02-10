@@ -42,6 +42,11 @@ public class MemoryStorage
         return ProfileSessions.Count(x => x.ProfileId == userid);
     }
 
+    public Profile? GetProfile(ulong userID)
+    {
+        return Profiles.SingleOrDefault(x => x.Id == userID);
+    }
+
     public Profile GetProfile(SocketUser user)
     {
         var profile = Profiles.SingleOrDefault(x => x.Id == user.Id);

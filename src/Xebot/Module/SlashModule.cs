@@ -22,7 +22,7 @@ public class SlashModule(MemoryStorage _memoryStorage, ILogger<SlashModule> _log
             _memoryStorage.ProfileSessions.Clear();
             await _memoryStorage.SaveStorageAsync();
 
-            await RespondAsync($"{Context.User.Mention} All profiles and sessions have been reset.", ephemeral: true);
+            await RespondAsync($"{Context.User.Mention} All profiles and sessions have been reset.");
         }
         catch (Exception e)
         {
@@ -45,7 +45,7 @@ public class SlashModule(MemoryStorage _memoryStorage, ILogger<SlashModule> _log
 
             var datas = string.Join(" \n ", matchedItems.Select(x => x.Name));
 
-            await RespondAsync($"{Context.User.Mention} All active sessions : \n {datas}", ephemeral: true);
+            await RespondAsync($"{Context.User.Mention} All active sessions : \n {datas}");
         }
         catch (Exception e)
         {
@@ -65,7 +65,7 @@ public class SlashModule(MemoryStorage _memoryStorage, ILogger<SlashModule> _log
             
             await RespondAsync($@"{Context.User.Mention} 
 - **Total Temps =** {DateConverter.ConvertSecondsToHumanHourReadable(datas.TotalSeconds)}  
-- **Total Session =** {_memoryStorage.CountProfileSession(user.Id)}", ephemeral: true);
+- **Total Session =** {_memoryStorage.CountProfileSession(user.Id)}");
         }
         catch (Exception e)
         {
