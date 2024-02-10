@@ -35,8 +35,7 @@ public class AutoEndService(ILogger<AutoEndService> _logger, MemoryStorage _memo
     private async void DoWork()
     {
         var list = _memoryStorage.ProfileSessions
-            .FindAll(x => x.DateStart < DateTime.UtcNow.Subtract(TimeSpan.FromMinutes(2)) & x.DateEnd == null);
-            //.FindAll(x => x.DateStart < DateTime.UtcNow.Subtract(TimeSpan.FromHours(12)) & x.DateEnd == null);
+            .FindAll(x => x.DateStart < DateTime.UtcNow.Subtract(TimeSpan.FromHours(12)) & x.DateEnd == null);
 
         var utcNow = DateTime.UtcNow;
         foreach (var item in list)
