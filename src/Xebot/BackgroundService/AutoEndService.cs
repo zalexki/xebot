@@ -41,7 +41,8 @@ public class AutoEndService(ILogger<AutoEndService> _logger, MemoryStorage _memo
         var utcNow = DateTime.UtcNow;
         foreach (var item in list)
         {
-            item.DateEnd = utcNow;
+            await _memoryStorage.EndProfileSession(item.ProfileId, utcNow);
+           
             var embed = new EmbedBuilder();
 
             var profile = _memoryStorage.GetProfile(item.ProfileId);
@@ -55,8 +56,8 @@ public class AutoEndService(ILogger<AutoEndService> _logger, MemoryStorage _memo
                 .AddField("Début de service :", DateConverter.ConvertUtcToParisTimeHumanReadable(item.DateStart), true)
                 .AddField("Fin de service :", DateConverter.ConvertUtcToParisTimeHumanReadable(item.DateEnd ?? utcNow), true)
                 .AddField("Temps de service :", DateConverter.ConvertSecondsToHumanHourReadable(item.TotalSeconds), true)
-                .AddField("Temps total de service :", DateConverter.ConvertSecondsToHumanHourReadable(profile.TotalSeconds), true)
-                .AddField("Nombre total de service :", _memoryStorage.CountProfileSession(profile.Id), true)
+                .AddField("Temps total de service :", DateConverter.ConvertSecondsToHumanHourReadable(profile?.TotalSeconds ?? 0), true)
+                .AddField("Nombre total de service :", _memoryStorage.CountProfileSession(item.ProfileId), true)
 
                 // empty line
                 .AddField("** **", "** **")
@@ -66,7 +67,5 @@ public class AutoEndService(ILogger<AutoEndService> _logger, MemoryStorage _memo
 
             await _memoryStorage.channelToSendEvents.SendMessageAsync(embed: embed.Build());
         }
-
-        await _memoryStorage.SaveStorageAsync();
     }
 }
