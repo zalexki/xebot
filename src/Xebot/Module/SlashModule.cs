@@ -22,7 +22,7 @@ public class SlashModule(MemoryStorage _memoryStorage, ILogger<SlashModule> _log
             _memoryStorage.ProfileSessions.Clear();
             await _memoryStorage.SaveStorageAsync();
 
-            await RespondAsync($"{Context.User.Mention} All profiles and sessions have been reset.");
+            await RespondAsync($"All profiles and sessions have been reset.");
         }
         catch (Exception e)
         {
@@ -30,7 +30,6 @@ public class SlashModule(MemoryStorage _memoryStorage, ILogger<SlashModule> _log
         }
     }
 
-    // show all datas
     [SlashCommand("showactives", "List all active sessions")]
     [Discord.Commands.RequireUserPermission(GuildPermission.Administrator)]
     public async Task ShowActives()
@@ -45,7 +44,7 @@ public class SlashModule(MemoryStorage _memoryStorage, ILogger<SlashModule> _log
 
             var datas = string.Join(" \n ", matchedItems.Select(x => x.Name));
 
-            await RespondAsync($"{Context.User.Mention} All active sessions : \n {datas}");
+            await RespondAsync($"All active sessions : \n {datas}");
         }
         catch (Exception e)
         {
@@ -53,19 +52,40 @@ public class SlashModule(MemoryStorage _memoryStorage, ILogger<SlashModule> _log
         }
     }
 
-    // show data of a profile
     [SlashCommand("show", "Show session data for one user")]
     [Discord.Commands.RequireUserPermission(GuildPermission.Administrator)]
-    public async Task ShowUserData(SocketGuildUser user = null)
+    public async Task ShowUserData(SocketGuildUser? user = null)
     {
         try
         {
             user ??= (SocketGuildUser) Context.User;
             var datas = _memoryStorage.GetProfile(user);
             
-            await RespondAsync($@"{Context.User.Mention} 
+            await RespondAsync($@"{user.Mention} 
 - **Total Temps =** {DateConverter.ConvertSecondsToHumanHourReadable(datas.TotalSeconds)}  
 - **Total Session =** {_memoryStorage.CountProfileSession(user.Id)}");
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, $"error processing pds for user {Context.Interaction.User.Id}");
+        }
+    }
+
+    [SlashCommand("showall", "Show session data for one user")]
+    [Discord.Commands.RequireUserPermission(GuildPermission.Administrator)]
+    public async Task ShowAllDatas()
+    {
+        try
+        {
+            var message = string.Empty;
+
+            foreach (var item in _memoryStorage.ProfileSessions)
+            {
+                var profile = _memoryStorage.GetProfile(item.ProfileId);
+                message += $@"{profile?.Name} : Heures = {DateConverter.ConvertSecondsToHumanHourReadable(item.TotalSeconds)} Sessions = {_memoryStorage.CountProfileSession(item.ProfileId)} \n";
+            }
+
+            await RespondAsync(message);
         }
         catch (Exception e)
         {
