@@ -79,10 +79,9 @@ public class SlashModule(MemoryStorage _memoryStorage, ILogger<SlashModule> _log
         {
             var message = string.Empty;
 
-            foreach (var item in _memoryStorage.ProfileSessions)
+            foreach (var item in _memoryStorage.Profiles)
             {
-                var profile = _memoryStorage.GetProfile(item.ProfileId);
-                message += $"{profile?.Name} : Heures = {DateConverter.ConvertSecondsToHumanHourReadable(item.TotalSeconds)} Sessions = {_memoryStorage.CountProfileSession(item.ProfileId)} \n ";
+                message += $"{item.Name} : Heures = {DateConverter.ConvertSecondsToHumanHourReadable(item.TotalSeconds)} Sessions = {_memoryStorage.CountProfileSession(item.Id)} \n ";
             }
 
             await RespondAsync(message);
