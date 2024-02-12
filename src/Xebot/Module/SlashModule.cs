@@ -71,7 +71,7 @@ public class SlashModule(MemoryStorage _memoryStorage, ILogger<SlashModule> _log
         }
     }
 
-    [SlashCommand("showall", "Show session data for one user")]
+    [SlashCommand("showall", "Show all sessions data")]
     [Discord.Commands.RequireUserPermission(GuildPermission.Administrator)]
     public async Task ShowAllDatas()
     {
@@ -82,7 +82,7 @@ public class SlashModule(MemoryStorage _memoryStorage, ILogger<SlashModule> _log
             foreach (var item in _memoryStorage.ProfileSessions)
             {
                 var profile = _memoryStorage.GetProfile(item.ProfileId);
-                message += $@"{profile?.Name} : Heures = {DateConverter.ConvertSecondsToHumanHourReadable(item.TotalSeconds)} Sessions = {_memoryStorage.CountProfileSession(item.ProfileId)} \n";
+                message += $"{profile?.Name} : Heures = {DateConverter.ConvertSecondsToHumanHourReadable(item.TotalSeconds)} Sessions = {_memoryStorage.CountProfileSession(item.ProfileId)} \n ";
             }
 
             await RespondAsync(message);
