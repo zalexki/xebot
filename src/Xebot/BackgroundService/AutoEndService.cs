@@ -1,13 +1,16 @@
-﻿using Discord;
-using Discord.WebSocket;
-using System;
+﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+
 using Microsoft.Extensions.Logging;
-using Xebot.Storage;
+
+using Discord;
+using Discord.WebSocket;
+
 using Xebot.Converter;
 using Xebot.Models;
-using System.Linq;
+using Xebot.Storage;
 
 namespace Xebot.BackgroundService;
 

@@ -18,6 +18,7 @@ public class MemoryStorage
     public ITextChannel channelToSendEvents;
     public readonly List<Profile> Profiles = [];
     public readonly List<ProfileSession> ProfileSessions = [];
+    
     public readonly Converter.JsonConverter _converter;
 
     public MemoryStorage(Converter.JsonConverter converter)

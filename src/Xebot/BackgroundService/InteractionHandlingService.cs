@@ -1,13 +1,17 @@
-using Discord;
-using Discord.Interactions;
-using Discord.WebSocket;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using System;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+
+using Discord;
+using Discord.Interactions;
+using Discord.WebSocket;
+
+using Newtonsoft.Json;
+
 using Xebot.Storage;
 
 namespace Xebot.BackgroundService;
@@ -33,7 +37,7 @@ public class InteractionHandlingService(
     public async Task OnReady()
     {
         var success = await SpawnEmbedWithButtons();
-        
+
         // set channel for answers
         var channel = await _discord.GetChannelAsync(_memoryStorage.ID_channelToSendEvents,
             options: new RequestOptions
@@ -57,8 +61,9 @@ public class InteractionHandlingService(
             .WithButton("PDS", "pds", ButtonStyle.Success)
             .WithButton("FDS", "fds", ButtonStyle.Danger);
 
-        var channel = await _discord.GetChannelAsync(_memoryStorage.ID_channelToSendEmbed, options: new RequestOptions{RetryMode = RetryMode.AlwaysRetry, RatelimitCallback = RateLimitedCallbackGetChannel});
-        if (channel is not ITextChannel chanText) {
+        var channel = await _discord.GetChannelAsync(_memoryStorage.ID_channelToSendEmbed, options: new RequestOptions { RetryMode = RetryMode.AlwaysRetry, RatelimitCallback = RateLimitedCallbackGetChannel });
+        if (channel is not ITextChannel chanText)
+        {
             _logger.LogError("failed to retrieve channel for {Id}", _memoryStorage.ID_channelToSendEmbed);
             return false;
         }
