@@ -10,10 +10,10 @@ using Xebot.Storage;
 
 namespace Xebot.Modules;
 
+[RequireUserPermission(GuildPermission.Administrator, Group = "Permission")]
 public class SlashModule(MemoryStorage _memoryStorage, ILogger<SlashModule> _logger) : InteractionModuleBase<SocketInteractionContext>
 {
     [SlashCommand("reset", "Reset all profiles and sessions")]
-    [Discord.Commands.RequireUserPermission(GuildPermission.Administrator)]
     public async Task ResetData()
     {
         try
@@ -31,7 +31,6 @@ public class SlashModule(MemoryStorage _memoryStorage, ILogger<SlashModule> _log
     }
 
     [SlashCommand("showactives", "List all active sessions")]
-    [Discord.Commands.RequireUserPermission(GuildPermission.Administrator)]
     public async Task ShowActives()
     {
         try
@@ -53,7 +52,6 @@ public class SlashModule(MemoryStorage _memoryStorage, ILogger<SlashModule> _log
     }
 
     [SlashCommand("show", "Show session data for one user")]
-    [Discord.Commands.RequireUserPermission(GuildPermission.Administrator)]
     public async Task ShowUserData(SocketGuildUser? user = null)
     {
         try
@@ -72,7 +70,6 @@ public class SlashModule(MemoryStorage _memoryStorage, ILogger<SlashModule> _log
     }
 
     [SlashCommand("showall", "Show all sessions data")]
-    [Discord.Commands.RequireUserPermission(GuildPermission.Administrator)]
     public async Task ShowAllDatas()
     {
         try
