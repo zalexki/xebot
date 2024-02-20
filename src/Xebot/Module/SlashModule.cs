@@ -10,7 +10,8 @@ using Xebot.Storage;
 
 namespace Xebot.Modules;
 
-[RequireUserPermission(GuildPermission.Administrator, Group = "Permission")]
+[EnabledInDm(false)]
+[DefaultMemberPermissions(GuildPermission.BanMembers)]
 public class SlashModule(MemoryStorage _memoryStorage, ILogger<SlashModule> _logger) : InteractionModuleBase<SocketInteractionContext>
 {
     [SlashCommand("reset", "Reset all profiles and sessions")]
